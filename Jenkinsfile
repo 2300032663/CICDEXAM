@@ -10,19 +10,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Build Frontend') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'sudo cp -r dist/* /var/www/html/'
+                echo 'Deploying build files to local folder...'
+                bat 'xcopy /E /I /Y dist\\* C:\\Users\\YASASWINI\\hospital-deploy\\'
             }
         }
     }
